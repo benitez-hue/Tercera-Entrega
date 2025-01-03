@@ -1,0 +1,49 @@
+/* Estilo general del cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+    line-height: 1.6; /* Mejora la legibilidad */
+}
+
+/* Título principal */
+h1 {
+    color: #333;
+    text-align: center; /* Centramos el título */
+    margin-bottom: 20px; /* Espaciado inferior */
+}
+
+/* Listas generales */
+ul {
+    list-style-type: none; /* Eliminamos los puntos predeterminados */
+    padding: 0;
+}
+
+/* Estilo de cada elemento de la lista */
+li {
+    background: #f4f4f4; /* Fondo claro */
+    margin: 10px 0; /* Más espacio entre elementos */
+    padding: 15px; /* Mayor relleno interno para separación */
+    border-radius: 8px; /* Bordes redondeados más sutiles */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animación al pasar el cursor */
+}
+
+/* Cambio de efecto al pasar el cursor por un elemento */
+li:hover {
+    transform: translateY(-3px); /* Sutil movimiento hacia arriba */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+}
+
+/* Estilo de texto destacado */
+strong {
+    color: #555;
+}
+
+/* Subtítulos internos o encabezados secundarios */
+h2 {
+    color: #666;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
