@@ -4,7 +4,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator, RegexVa
 from datetime import date
 
 # ====================
-# Clase Familiarsdasdsadasd
+# Clase Familiar
 # ====================
 class Familiar(models.Model):
     nombre = models.CharField(
