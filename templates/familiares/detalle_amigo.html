@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Detalle del Amigo</h1>
+    <p><strong>Nombre:</strong> {{ amigo.nombre }}</p>
+    <p><strong>Edad:</strong> {{ amigo.edad }}</p>
+    <p><strong>Teléfono:</strong> {{ amigo.telefono }}</p>
+    <a href="{% url 'lista_amigos' %}" class="btn btn-primary">Volver a la lista</a>
+</div>
+{% endblock %}

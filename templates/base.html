@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi Aplicación Django{% endblock %}</title>
+
+    <!-- Cargar el archivo de estilos desde la carpeta static -->
+    <link rel="stylesheet" href="{% static 'familiares/styles.css' %}">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Inicio</a></li>
+                <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+                <li><a href="{% url 'signup' %}">Registrarse</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        {% block content %}
+        <!-- Contenido dinámico que será inyectado por cada página -->
+        {% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 - Mi Aplicación Django</p>
+    </footer>
+</body>
+</html>

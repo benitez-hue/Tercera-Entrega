@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center">Lista de Trabajos</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre de la Empresa</th>
+                <th>Posición</th>
+                <th>Salario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trabajo in page_obj %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ trabajo.nombre_empresa }}</td>
+                <td>{{ trabajo.posicion }}</td>
+                <td>${{ trabajo.salario }}</td>
+                <td>
+                    <a href="{% url 'editar_trabajo' trabajo.id %}" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="{% url 'eliminar_trabajo' trabajo.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No hay trabajos registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Paginación -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% endif %}
+            <li class="page-item active"><a class="page-link">{{ page_obj.number }}</a></li>
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Botón para agregar trabajo -->
+    <div class="text-center mt-4">
+        <a href="{% url 'agregar_trabajo' %}" class="btn btn-primary">Agregar Trabajo</a>
+    </div>
+</div>
+{% endblock %}

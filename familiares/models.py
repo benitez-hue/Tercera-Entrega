@@ -1,14 +1,15 @@
 from django.db import models
-from django.contrib.auth.models import User  # Importamos el modelo User para asociarlo con Blog
+from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator, RegexValidator
 from datetime import date
 
-
+# ====================
 # Clase Familiar
+# ====================
 class Familiar(models.Model):
     nombre = models.CharField(
-        max_length=100, 
-        verbose_name="Nombre completo", 
+        max_length=100,
+        verbose_name="Nombre completo",
         help_text="Ingrese el nombre completo del familiar."
     )
     edad = models.IntegerField(
@@ -17,7 +18,7 @@ class Familiar(models.Model):
         help_text="Ingrese la edad del familiar (de 0 a 120 años)."
     )
     fecha_nacimiento = models.DateField(
-        verbose_name="Fecha de nacimiento", 
+        verbose_name="Fecha de nacimiento",
         help_text="Ingrese la fecha de nacimiento del familiar."
     )
 
@@ -34,12 +35,13 @@ class Familiar(models.Model):
         verbose_name_plural = "Familiares"
         ordering = ['nombre']
 
-
+# ====================
 # Clase Amigo
+# ====================
 class Amigo(models.Model):
     nombre = models.CharField(
-        max_length=100, 
-        verbose_name="Nombre", 
+        max_length=100,
+        verbose_name="Nombre",
         help_text="Ingrese el nombre completo del amigo."
     )
     telefono = models.CharField(
@@ -49,7 +51,7 @@ class Amigo(models.Model):
         help_text="Ingrese el número de teléfono del amigo (incluyendo código de país si es necesario)."
     )
     email = models.EmailField(
-        verbose_name="Correo electrónico", 
+        verbose_name="Correo electrónico",
         help_text="Ingrese una dirección de correo electrónico válida."
     )
     familiar = models.ForeignKey(
@@ -69,17 +71,18 @@ class Amigo(models.Model):
         verbose_name_plural = "Amigos"
         ordering = ['nombre']
 
-
+# ====================
 # Clase Trabajo
+# ====================
 class Trabajo(models.Model):
     nombre_empresa = models.CharField(
-        max_length=100, 
-        verbose_name="Nombre de la empresa", 
+        max_length=100,
+        verbose_name="Nombre de la empresa",
         help_text="Ingrese el nombre de la empresa."
     )
     posicion = models.CharField(
-        max_length=50, 
-        verbose_name="Posición o cargo", 
+        max_length=50,
+        verbose_name="Posición o cargo",
         help_text="Ingrese el cargo o posición desempeñada."
     )
     salario = models.DecimalField(
@@ -88,6 +91,10 @@ class Trabajo(models.Model):
         validators=[MinValueValidator(0)],
         verbose_name="Salario",
         help_text="Ingrese el salario asociado al trabajo."
+    )
+    descripcion = models.TextField(
+        verbose_name="Descripción",
+        help_text="Ingrese una descripción del trabajo."
     )
 
     def __str__(self):
@@ -100,26 +107,27 @@ class Trabajo(models.Model):
             models.UniqueConstraint(fields=['nombre_empresa', 'posicion'], name='unique_empresa_posicion')
         ]
 
-
+# ====================
 # Clase Blog
+# ====================
 class Blog(models.Model):
     def upload_to(instance, filename):
         return f'blog_images/{instance.autor.username}/{filename}'
 
     titulo = models.CharField(
-        max_length=200, 
-        verbose_name="Título", 
+        max_length=200,
+        verbose_name="Título",
         help_text="Ingrese el título del blog."
     )
     subtitulo = models.CharField(
-        max_length=200, 
-        blank=True, 
-        null=True, 
-        verbose_name="Subtítulo", 
+        max_length=200,
+        blank=True,
+        null=True,
+        verbose_name="Subtítulo",
         help_text="Ingrese un subtítulo para el blog (opcional)."
     )
     cuerpo = models.TextField(
-        verbose_name="Contenido", 
+        verbose_name="Contenido",
         help_text="Ingrese el contenido del blog."
     )
     autor = models.ForeignKey(
@@ -129,7 +137,7 @@ class Blog(models.Model):
         help_text="Seleccione el autor del blog."
     )
     fecha = models.DateTimeField(
-        auto_now_add=True, 
+        auto_now_add=True,
         verbose_name="Fecha de publicación"
     )
     imagen = models.ImageField(
